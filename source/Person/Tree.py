@@ -25,7 +25,7 @@ class Node:
         self.spouse: Node | None = spouse
 
     def __str__(self) -> str:
-        return self.personal_info.first_name + " " + self.personal_info.last_name
+        return " ".join((self.personal_info.first_name, self.personal_info.last_name))
 
     def add_relation(self, relative, relation: Literal["child", "parent", "spouse"]) -> None:
         """
@@ -59,8 +59,8 @@ class Node:
 
 
 class Tree:
-    def __init__(self, root: Node):
-        self.root: Node = root
+    def __init__(self, root: Node | None = None):
+        self.root: Node | None = root
 
     @staticmethod
     def add_relation(target: Node, relative: Node, relation: Literal["child", "parent", "spouse"]):

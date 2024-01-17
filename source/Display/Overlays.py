@@ -1,5 +1,8 @@
 import tkinter as tk
 
+from Person import Create
+from Setup import GlobalVars as gv
+
 
 def draw(window: tk.Tk):
     # Create a label
@@ -13,9 +16,9 @@ def draw(window: tk.Tk):
     # Bind the resize event
     window.bind("<Configure>", lambda e: __draw_line(window, canvas))
 
+    gv.family_tree.root = Create.new_person()
+
 
 def __draw_line(window: tk.Tk, canvas: tk.Canvas):
     canvas.delete("all")  # Clear existing line
     canvas.create_line(0, 0, window.winfo_width(), 0, width=1)  # Draw new line
-
-
