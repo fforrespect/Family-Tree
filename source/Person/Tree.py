@@ -65,4 +65,3 @@ class Tree:
     @staticmethod
     def add_relation(target: Node, relative: Node, relation: Literal["child", "parent", "spouse"]):
         target.add_relation(relative, relation)
-
