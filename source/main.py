@@ -9,6 +9,7 @@ from Setup import Constants as c, GlobalVars as gv
 pygame.init()
 screen: pygame.Surface = pygame.display.set_mode(c.INIT_WINDOW_SIZE)
 clock: pygame.time.Clock = pygame.time.Clock()
+pygame.display.set_caption("Family Tree Maker")
 
 # Initialise the Program
 gv.family_tree = PTree.Tree()
