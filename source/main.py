@@ -1,19 +1,22 @@
-import pygame as pg
+import pygame
 
-from Display import Overlays, Tree
+from Display import Overlays, Window
+from Event import Quit
 from Person import Tree as PTree
 from Setup import Constants as c, GlobalVars as gv
 
-# Initialize Tkinter
-# window: tk.Tk = tk.Tk()
-# window.title("Family Tree")
-# window.geometry(f"{c.INIT_WINDOW_SIZE[0]}x{c.INIT_WINDOW_SIZE[1]}")
+# Initialize pygame
+pygame.init()
+screen: pygame.Surface = pygame.display.set_mode(c.INIT_WINDOW_SIZE)
+clock: pygame.time.Clock = pygame.time.Clock()
 
-# Initialise the Tree
+# Initialise the Program
 gv.family_tree = PTree.Tree()
+Overlays.init()
 
-# Overlays.draw(window)
-# Tree.draw(window)
-#
-# # Start the application
-# window.mainloop()
+while True:
+    clock.tick(c.FPS)
+
+    Quit.event_quit_check(pygame.event.get())
+
+    Window.display(screen)

@@ -1,34 +1,27 @@
-import tkinter as tk
+import pygame
 from typing import Literal
 
 from Person import Create, Tree, PersonalInfo
-from Setup import GlobalVars as gv
+from Setup import Constants as c, GlobalVars as gv, Colours
 
 
-def draw(window: tk.Tk):
-    # def handle_new_person_data(data: dict[Literal['first_name', 'last_name', 'gender'], str]):
-    #     print(data)
-    #     data['gender'] = data['gender'].lower()
-    #     info = PersonalInfo.Info(data['first_name'], data['last_name'], data['gender'])
-    #     gv.family_tree.root = Tree.Node(info)
-    #
-    # # Create a label
-    # label = tk.Label(window, text="Family Tree", font=("Arial Bold", 20))
-    # label.pack(side="top", anchor="center")
-    #
-    # # Create a canvas for the line with a slightly larger height
-    # canvas = tk.Canvas(window, height=2, bg="gray")
-    # canvas.pack(fill="x")
-    #
-    # # Bind the resize event
-    # window.bind("<Configure>", lambda e: __draw_line(window, canvas))
-    #
-    # Create.new_person(window, handle_new_person_data)
-
-    pass
+def init():
+    Title()
 
 
-def __draw_line(window: tk.Tk, canvas: tk.Canvas):
-    # canvas.delete("all")  # Clear existing line
-    # canvas.create_line(0, 0, window.winfo_width(), 0, width=1)  # Draw new line
-    pass
+class Title:
+    def __init__(self):
+        self.loc: tuple[int, int] = (c.INIT_WINDOW_SIZE[0]//2, 30)
+        self.text: str = "Family Tree"
+        self.colour: tuple[int, int, int] = Colours.WHITE
+
+        gv.all_objects.append(self)
+
+    def draw(self, screen: pygame.Surface):
+        title_font = pygame.font.Font(None, 30)
+        title = title_font.render(self.text, True, self.colour)
+        title_rect = title.get_rect()
+        title_rect.center = self.loc
+
+        screen.blit(title, title_rect)
+
