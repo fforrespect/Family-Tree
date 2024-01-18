@@ -1,10 +1,12 @@
 import tkinter as tk
 
 from Person import Create
-from Setup import GlobalVars as gv
 
 
 def draw(window: tk.Tk):
+    def handle_new_person_data(data):
+        print(data)
+
     # Create a label
     label = tk.Label(window, text="Family Tree", font=("Arial Bold", 20))
     label.pack(side="top", anchor="center")
@@ -16,7 +18,7 @@ def draw(window: tk.Tk):
     # Bind the resize event
     window.bind("<Configure>", lambda e: __draw_line(window, canvas))
 
-    gv.family_tree.root = Create.new_person()
+    Create.new_person(window, handle_new_person_data)
 
 
 def __draw_line(window: tk.Tk, canvas: tk.Canvas):
