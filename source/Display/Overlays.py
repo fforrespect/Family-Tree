@@ -1,18 +1,23 @@
 import tkinter as tk
+from typing import Literal
 
-from Person import Create
+from Person import Create, Tree, PersonalInfo
+from Setup import GlobalVars as gv
 
 
 def draw(window: tk.Tk):
-    def handle_new_person_data(data):
+    def handle_new_person_data(data: dict[Literal['first_name', 'last_name', 'gender'], str]):
         print(data)
+        data['gender'] = data['gender'].lower()
+        info = PersonalInfo.Info(data['first_name'], data['last_name'], data['gender'])
+        gv.family_tree.root = Tree.Node(info)
 
     # Create a label
     label = tk.Label(window, text="Family Tree", font=("Arial Bold", 20))
     label.pack(side="top", anchor="center")
 
-    # Create a canvas for the line with a slightly larger height and optional background color
-    canvas = tk.Canvas(window, height=2, bg="gray")  # Background color is optional
+    # Create a canvas for the line with a slightly larger height
+    canvas = tk.Canvas(window, height=2, bg="gray")
     canvas.pack(fill="x")
 
     # Bind the resize event

@@ -1,5 +1,8 @@
 import tkinter as tk
 
+from Setup import GlobalVars as gv
+
 
 def draw(window: tk.Tk):
-    pass
+    if gv.family_tree.root is not None:
+        print(gv.family_tree.root)
